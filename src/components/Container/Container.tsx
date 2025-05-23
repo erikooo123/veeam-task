@@ -17,7 +17,12 @@ const Container: FunctionComponent = () => {
 		<Wrapper>
 			<TabButtons role="tablist">
 				{TABS.map((tab) => (
-					<TabButton {...tab} onTabClick={() => setSelectedTab(tab.id)} isSelected={selectedTab === tab.id} />
+					<TabButton
+						{...tab}
+						onTabClick={() => setSelectedTab(tab.id)}
+						isSelected={selectedTab === tab.id}
+						key={tab.id}
+					/>
 				))}
 			</TabButtons>
 
