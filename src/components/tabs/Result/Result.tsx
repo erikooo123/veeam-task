@@ -4,7 +4,7 @@ import { Field, FieldRendererProps, FieldType, FieldTypeToValue } from './servic
 import { TabProps } from '../../Container/services/types';
 
 const Result: FunctionComponent<TabProps> = ({ config }) => {
-	const [formData, setFormData] = useState<Record<string, string | boolean | number>>({});
+	const [formData, setFormData] = useState<Record<string, FieldTypeToValue[FieldType]>>({});
 
 	if (!config) return <p>No form configuration loaded.</p>;
 
