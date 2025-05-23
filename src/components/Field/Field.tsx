@@ -3,7 +3,7 @@ import { FieldType } from '../tabs/Result/services/types';
 import { FieldProps, FieldRendererProps } from './services/types';
 import { FIELD_MAP } from './services/constants';
 
-const Field = <T extends FieldType>({ type, name, label, value, onChange }: FieldProps<T>) => {
+const Field = <T extends FieldType>({ type, name, label, value, onChange, options }: FieldProps<T>) => {
 	const Input: FunctionComponent<FieldRendererProps<T>> = FIELD_MAP[type];
 
 	if (!Input) return <p key={name}>Unsupported field type: {type}</p>;
@@ -11,7 +11,7 @@ const Field = <T extends FieldType>({ type, name, label, value, onChange }: Fiel
 	return (
 		<div>
 			<label htmlFor={name}>{label}</label>
-			<Input name={name} label={label} value={value} onChange={onChange} />
+			<Input name={name} label={label} value={value} onChange={onChange} options={options} />
 		</div>
 	);
 };

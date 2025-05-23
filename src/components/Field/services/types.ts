@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Field, FieldType, FieldTypeToValue } from '../../tabs/Result/services/types';
 
-export type FieldProps<T extends FieldType> = {
+export type FieldProps<T extends FieldType> = Pick<FieldRendererProps<T>, 'options'> & {
 	type: T;
 	name: string;
 	label: string;
