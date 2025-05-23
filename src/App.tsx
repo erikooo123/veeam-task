@@ -1,11 +1,7 @@
-import { type FunctionComponent } from 'react';
+import Container from './components/Container/Container';
 
-const App: FunctionComponent = () => {
-	return (
-		<div>
-			<div role="tablist"></div>
-		</div>
-	);
+const App = () => {
+	return <Container />;
 };
 
 export default App;
