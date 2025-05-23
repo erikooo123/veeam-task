@@ -1,16 +1,12 @@
 import { FunctionComponent } from 'react';
-import { Tab, TabId } from '../Container/services/types';
+import { Tab } from '../Container/services/types';
 
 type TabButtonProps = Tab & {
-	onTabClick: (id: TabId) => void;
+	onTabClick: () => void;
 };
 
-const TabButton: FunctionComponent<TabButtonProps> = ({
-	onTabClick,
-	label,
-	id,
-}) => (
-	<button type="button" onClick={() => onTabClick(id)} role="tab">
+const TabButton: FunctionComponent<TabButtonProps> = ({ onTabClick, label }) => (
+	<button type="button" onClick={onTabClick} role="tab">
 		{label}
 	</button>
 );
