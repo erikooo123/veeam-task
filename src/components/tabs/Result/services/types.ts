@@ -16,8 +16,12 @@ export type Field<T extends FieldType = FieldType> = {
 	options?: T extends 'radio' ? string[] : never;
 };
 
+export type FormValues = {
+	[K in string]: FieldTypeToValue[FieldType];
+};
+
 export type FieldRendererProps<T extends FieldType> = {
 	field: Field<T>;
-	value: FieldTypeToValue[T];
+	value: FieldTypeToValue[T] | undefined;
 	onChange: (name: string, value: FieldTypeToValue[T]) => void;
 };

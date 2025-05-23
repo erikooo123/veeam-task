@@ -1,9 +1,7 @@
 import { FunctionComponent } from 'react';
 import { FieldRendererProps, FieldType } from './types';
 
-export const FIELD_MAP: {
-	[T in FieldType]: FunctionComponent<FieldRendererProps<T>>;
-} = {
+export const FIELD_MAP: { [K in FieldType]: FunctionComponent<FieldRendererProps<K>> } = {
 	text: ({ field, value, onChange }) => (
 		<input type="text" id={field.name} value={value ?? ''} onChange={(e) => onChange(field.name, e.target.value)} />
 	),

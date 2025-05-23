@@ -1,24 +1,35 @@
 import { FormEventHandler, useState, type FunctionComponent } from 'react';
 import { FIELD_MAP } from './services/constants';
-import { Field, FieldType, FieldTypeToValue } from './services/types';
+import { Field, FieldRendererProps, FieldType, FieldTypeToValue } from './services/types';
+import { TabProps } from '../../Container/services/types';
 
-type ResultProps = {
-	config: string;
-};
-
-type FormData = {
-	[K in string]: FieldTypeToValue[keyof FieldTypeToValue];
-};
-
-const Result: FunctionComponent<ResultProps> = ({ config }) => {
-	const [formData, setFormData] = useState<FormData>({});
+const Result: FunctionComponent<TabProps> = ({ config }) => {
+	const [formData, setFormData] = useState<Record<string, string | boolean | number>>({});
 
 	if (!config) return <p>No form configuration loaded.</p>;
 
-	const fields = JSON.parse(config) as Field[];
+	const renderField = <T extends FieldType>(field: Field<T>) => {
+		const { type, name, label } = field;
 
-	const handleChange = <T extends FieldType>(name: string, value: FieldTypeToValue[T]) => {
-		setFormData((prev) => ({ ...prev, [name]: value }));
+		const Field: FunctionComponent<FieldRendererProps<T>> = FIELD_MAP[type];
+
+		if (!Field) return <p key={name}>Unsupported field type: {type}</p>;
+
+		const handleFieldChange = (name: string, value: FieldTypeToValue[T]) => {
+			setFormData((prev) => ({ ...prev, [name]: value }));
+		};
+
+		return (
+			<div key={name}>
+				<label htmlFor={name}>{label}</label>
+				<Field
+					field={field}
+					// TODO: Try to remove casting
+					value={formData[name] as FieldTypeToValue[T]}
+					onChange={handleFieldChange}
+				/>
+			</div>
+		);
 	};
 
 	const onSubmit: FormEventHandler = (e) => {
@@ -26,24 +37,7 @@ const Result: FunctionComponent<ResultProps> = ({ config }) => {
 		console.log(formData);
 	};
 
-	return (
-		<form onSubmit={onSubmit}>
-			{fields.map((field) => {
-				const FieldComponent = FIELD_MAP[field.type];
-
-				if (!FieldComponent) {
-					return <p key={field.name}>Unsupported field type: {field.type}</p>;
-				}
-
-				return (
-					<div key={field.name}>
-						<label htmlFor={field.name}>{field.label}</label>
-						<FieldComponent field={field} value={formData[field.name]} onChange={handleChange} />
-					</div>
-				);
-			})}
-		</form>
-	);
+	return <form onSubmit={onSubmit}>{JSON.parse(config).map(renderField)}</form>;
 };
 
 export default Result;

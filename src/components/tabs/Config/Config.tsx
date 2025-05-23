@@ -1,19 +1,16 @@
 import type { FunctionComponent } from 'react';
 
 import AceEditor from 'react-ace';
+import { TabProps } from '../../Container/services/types';
 
-type ConfigProps = {
-	config: string;
-};
-
-const Config: FunctionComponent<ConfigProps> = ({ config }) => {
+const Config: FunctionComponent<TabProps> = ({ config, onConfigChange }) => {
 	return (
 		<AceEditor
 			fontSize={14}
 			height="400px"
 			highlightActiveLine
 			mode="json"
-			onChange={() => console.log('changed')}
+			onChange={onConfigChange}
 			setOptions={{
 				enableBasicAutocompletion: true,
 				enableLiveAutocompletion: true,

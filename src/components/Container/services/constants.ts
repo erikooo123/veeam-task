@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
 import Config from '../../tabs/Config/Config';
 import Result from '../../tabs/Result/Result';
-import { TabId, Tab } from './types';
+import { TabId, Tab, TabProps } from './types';
 
-export const TAB_MAP: Record<TabId, FunctionComponent> = {
+export const TAB_MAP: Record<TabId, FunctionComponent<TabProps>> = {
 	[TabId.Result]: Result,
 	[TabId.Config]: Config,
 };
