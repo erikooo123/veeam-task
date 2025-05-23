@@ -2,9 +2,11 @@ import { FormEventHandler, useState, type FunctionComponent } from 'react';
 import { Field, FieldType, FieldTypeToValue } from './services/types';
 import { TabProps } from '../../Container/services/types';
 import FieldComponent from '../../Field/Field';
+import { getInitialFormData } from './services/helpers';
+import { type FormData } from './services/types';
 
 const Result: FunctionComponent<TabProps> = ({ config }) => {
-	const [formData, setFormData] = useState<Record<string, FieldTypeToValue[FieldType]>>({});
+	const [formData, setFormData] = useState<FormData>(getInitialFormData(config));
 
 	if (!config) return <p>No form configuration loaded.</p>;
 

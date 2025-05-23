@@ -19,3 +19,5 @@ export type Field<T extends FieldType = FieldType> = {
 export type FormValues = {
 	[K in string]: FieldTypeToValue[FieldType];
 };
+
+export type FormData = Record<string, FieldTypeToValue[FieldType]>;
