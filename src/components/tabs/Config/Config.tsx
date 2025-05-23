@@ -2,7 +2,11 @@ import type { FunctionComponent } from 'react';
 
 import AceEditor from 'react-ace';
 
-const Config: FunctionComponent = () => {
+type ConfigProps = {
+	config: string;
+};
+
+const Config: FunctionComponent<ConfigProps> = ({ config }) => {
 	return (
 		<AceEditor
 			fontSize={14}
@@ -22,6 +26,7 @@ const Config: FunctionComponent = () => {
 			showPrintMargin={false}
 			theme="monokai"
 			width="100%"
+			value={config}
 		/>
 	);
 };
