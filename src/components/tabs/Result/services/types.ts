@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 export type FieldTypeToValue = {
 	text: string;
 	number: number;
@@ -20,8 +22,12 @@ export type FormValues = {
 	[K in string]: FieldTypeToValue[FieldType];
 };
 
-export type FieldRendererProps<T extends FieldType> = {
-	field: Field<T>;
+export type FieldRendererProps<T extends FieldType> = Pick<Field<T>, 'name' | 'label'> & {
 	value: FieldTypeToValue[T] | undefined;
 	onChange: (name: string, value: FieldTypeToValue[T]) => void;
+	options?: T extends 'radio' ? string[] : never;
+};
+
+export type FieldMap = {
+	[Type in FieldType]: FunctionComponent<FieldRendererProps<Type>>;
 };

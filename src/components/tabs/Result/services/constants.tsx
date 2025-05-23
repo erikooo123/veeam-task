@@ -1,42 +1,32 @@
-import { FunctionComponent } from 'react';
-import { FieldRendererProps, FieldType } from './types';
+import { Input } from '../../../Input/Input.styled';
+import { FieldMap } from './types';
 
-export const FIELD_MAP: { [K in FieldType]: FunctionComponent<FieldRendererProps<K>> } = {
-	text: ({ field, value, onChange }) => (
-		<input type="text" id={field.name} value={value ?? ''} onChange={(e) => onChange(field.name, e.target.value)} />
+export const FIELD_MAP: FieldMap = {
+	text: ({ name, value, onChange }) => (
+		<Input type="text" id={name} value={value} onChange={(e) => onChange(name, e.target.value)} />
 	),
-	number: ({ field, value, onChange }) => (
-		<input
-			type="number"
-			id={field.name}
-			value={value ?? ''}
-			onChange={(e) => onChange(field.name, Number(e.target.value))}
-		/>
+	number: ({ name, value, onChange }) => (
+		<Input type="number" id={name} value={value} onChange={(e) => onChange(name, Number(e.target.value))} />
 	),
-	textarea: ({ field, value, onChange }) => (
-		<textarea id={field.name} value={value ?? ''} onChange={(e) => onChange(field.name, e.target.value)} />
+	textarea: ({ name, value, onChange }) => (
+		<textarea id={name} value={value} onChange={(e) => onChange(name, e.target.value)} />
 	),
-	checkbox: ({ field, value, onChange }) => (
-		<input
-			type="checkbox"
-			id={field.name}
-			checked={value ?? false}
-			onChange={(e) => onChange(field.name, e.target.checked)}
-		/>
+	checkbox: ({ name, value, onChange }) => (
+		<Input type="checkbox" id={name} checked={value} onChange={(e) => onChange(name, e.target.checked)} />
 	),
-	date: ({ field, value, onChange }) => (
-		<input type="date" id={field.name} value={value ?? ''} onChange={(e) => onChange(field.name, e.target.value)} />
+	date: ({ name, value, onChange }) => (
+		<Input type="date" id={name} value={value} onChange={(e) => onChange(name, e.target.value)} />
 	),
-	radio: ({ field, value, onChange }) => (
+	radio: ({ options, name, value, onChange }) => (
 		<div>
-			{field.options?.map((option) => (
+			{options?.map((option) => (
 				<label key={option}>
-					<input
+					<Input
 						type="radio"
-						name={field.name}
+						name={name}
 						value={option}
 						checked={value === option}
-						onChange={() => onChange(field.name, option)}
+						onChange={() => onChange(name, option)}
 					/>
 					{option}
 				</label>
