@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
-import { FIELD_MAP } from '../tabs/Result/services/constants';
-import { FieldRendererProps, FieldType } from '../tabs/Result/services/types';
-import { FieldProps } from './services/types';
+import { FieldType } from '../tabs/Result/services/types';
+import { FieldProps, FieldRendererProps } from './services/types';
+import { FIELD_MAP } from './services/constants';
 
 const Field = <T extends FieldType>({ type, name, label, value, onChange }: FieldProps<T>) => {
 	const Input: FunctionComponent<FieldRendererProps<T>> = FIELD_MAP[type];

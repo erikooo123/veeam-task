@@ -1,4 +1,4 @@
-import { Input } from '../../../Input/Input.styled';
+import { Input } from '../../Input/Input.styled';
 import { FieldMap } from './types';
 
 export const FIELD_MAP: FieldMap = {
