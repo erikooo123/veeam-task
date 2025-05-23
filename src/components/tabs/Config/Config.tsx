@@ -6,7 +6,7 @@ const Config: FunctionComponent = () => {
 	return (
 		<AceEditor
 			fontSize={14}
-			height="600px"
+			height="400px"
 			highlightActiveLine
 			mode="json"
 			onChange={() => console.log('changed')}
