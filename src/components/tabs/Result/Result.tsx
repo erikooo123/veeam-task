@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
 
 const Result: FunctionComponent = () => {
-	return <div role="tab">result</div>;
+	return <h1>result</h1>;
 };
 
 export default Result;
