@@ -5,7 +5,7 @@ import TabButton from '../TabButton/TabButton';
 import { TabButtons, TabWrapper, Wrapper } from './Container.styled';
 
 import configuration from '../../data/exampleForm.json';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Container: FunctionComponent = () => {
 	const [config, setConfig] = useState(JSON.stringify(configuration, null, 2));
@@ -33,6 +33,7 @@ const Container: FunctionComponent = () => {
 			<TabWrapper role="tabpanel">
 				<Tab config={config} onConfigSave={onConfigSave} />
 			</TabWrapper>
+			<ToastContainer />
 		</Wrapper>
 	);
 };
