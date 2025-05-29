@@ -5,13 +5,17 @@ import TabButton from '../TabButton/TabButton';
 import { TabButtons, TabWrapper, Wrapper } from './Container.styled';
 
 import configuration from '../../data/exampleForm.json';
+import { toast } from 'react-toastify';
 
 const Container: FunctionComponent = () => {
 	const [config, setConfig] = useState(JSON.stringify(configuration, null, 2));
 	const [selectedTab, setSelectedTab] = useState<TabId>(TabId.Config);
 	const Tab = TAB_MAP[selectedTab];
 
-	const onConfigChange: TabProps['onConfigChange'] = (value) => setConfig(value);
+	const onConfigSave: TabProps['onConfigSave'] = (value) => {
+		setConfig(value);
+		toast.success('Braavo');
+	};
 
 	return (
 		<Wrapper>
@@ -27,7 +31,7 @@ const Container: FunctionComponent = () => {
 			</TabButtons>
 
 			<TabWrapper role="tabpanel">
-				<Tab config={config} onConfigChange={onConfigChange} />
+				<Tab config={config} onConfigSave={onConfigSave} />
 			</TabWrapper>
 		</Wrapper>
 	);
