@@ -7,7 +7,7 @@ import { TabButtons, TabWrapper, Wrapper } from './Container.styled';
 import configuration from '../../data/exampleForm.json';
 
 const Container: FunctionComponent = () => {
-	const [config, setConfig] = useState(JSON.parse(JSON.stringify(configuration, null, 2)));
+	const [config, setConfig] = useState(JSON.stringify(configuration, null, 2));
 	const [selectedTab, setSelectedTab] = useState<TabId>(TabId.Config);
 	const Tab = TAB_MAP[selectedTab];
 

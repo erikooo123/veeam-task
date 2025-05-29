@@ -1,5 +1,4 @@
 import { IAceEditorProps } from 'react-ace';
-import { Config } from '../../tabs/Result/services/types';
 
 export enum TabId {
 	Result = 'Result',
@@ -12,6 +11,6 @@ export type Tab = {
 };
 
 export type TabProps = {
-	config: Config;
+	config: string;
 	onConfigChange: IAceEditorProps['onChange'];
 };

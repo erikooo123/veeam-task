@@ -6,7 +6,7 @@ import { getInitialFormData } from './services/helpers';
 import { type FormData } from './services/types';
 
 const Result: FunctionComponent<TabProps> = ({ config }) => {
-	const [formData, setFormData] = useState<FormData>(getInitialFormData(config));
+	const [formData, setFormData] = useState<FormData>(getInitialFormData(JSON.parse(config)));
 
 	if (!config) return <p>No form configuration loaded.</p>;
 
