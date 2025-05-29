@@ -30,7 +30,7 @@ const Config: FunctionComponent<TabProps> = ({ config, onConfigChange }) => {
 			showPrintMargin={false}
 			theme="monokai"
 			width="100%"
-			value={config}
+			value={JSON.stringify(config, null, 2)}
 		/>
 	);
 };

@@ -9,15 +9,29 @@ export type FieldTypeToValue = {
 
 export type FieldType = keyof FieldTypeToValue;
 
-export type Field<T extends FieldType = FieldType> = {
+export type RawField<T extends FieldType = FieldType> = {
 	name: string;
 	label: string;
 	type: T;
-	options?: T extends 'radio' ? string[] : never;
+	options?: string[];
 };
 
 export type FormValues = {
 	[K in string]: FieldTypeToValue[FieldType];
 };
 
-export type FormData = Record<string, FieldTypeToValue[FieldType]>;
+type FormButton = {
+	text: string;
+};
+
+export type Field = RawField & { value: FieldTypeToValue[FieldType] };
+
+export type FormData = {
+	buttons: FormButton[];
+	fields: Field[];
+};
+
+export type Config = {
+	buttons: FormButton[];
+	fields: RawField[];
+};

@@ -1,4 +1,4 @@
-import type { FieldType, FieldTypeToValue, Field } from './types';
+import type { FieldType, FieldTypeToValue, Config } from './types';
 import { type FormData } from './types';
 
 export const getInitialValue = (type: FieldType): FieldTypeToValue[FieldType] => {
@@ -12,14 +12,12 @@ export const getInitialValue = (type: FieldType): FieldTypeToValue[FieldType] =>
 	}
 };
 
-export const getInitialFormData = (config: string): FormData => {
-	const fields: Field[] = JSON.parse(config);
-
-	return fields.reduce(
-		(acc, { name, type }) => ({
-			...acc,
-			[name]: getInitialValue(type),
-		}),
-		Object.create(null),
-	);
+export const getInitialFormData = (config: Config): FormData => {
+	return {
+		...config,
+		fields: config.fields.map((params) => ({
+			...params,
+			value: getInitialValue(params.type),
+		})),
+	};
 };

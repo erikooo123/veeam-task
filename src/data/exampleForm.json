@@ -1,8 +1,11 @@
-[
-	{ "name": "username", "label": "Username", "type": "text" },
-	{ "name": "age", "label": "Age", "type": "number" },
-	{ "name": "bio", "label": "Biography", "type": "textarea" },
-	{ "name": "subscribe", "label": "Subscribe", "type": "checkbox" },
-	{ "name": "birthdate", "label": "Birthdate", "type": "date" },
-	{ "name": "gender", "label": "Gender", "type": "radio", "options": ["Male", "Female", "Other"] }
-]
+{
+	"fields": [
+		{ "name": "username", "label": "Username", "type": "text" },
+		{ "name": "age", "label": "Age", "type": "number" },
+		{ "name": "bio", "label": "Biography", "type": "textarea" },
+		{ "name": "subscribe", "label": "Subscribe", "type": "checkbox" },
+		{ "name": "birthdate", "label": "Birthdate", "type": "date" },
+		{ "name": "gender", "label": "Gender", "type": "radio", "options": ["Male", "Female", "Other"] }
+	],
+	"buttons": [{ "text": "Accept" }, { "text": "Cancel" }]
+}

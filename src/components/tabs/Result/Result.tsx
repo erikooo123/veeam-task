@@ -15,25 +15,28 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 		console.log(formData);
 	};
 
-	const renderField = <T extends FieldType>(field: Field<T>) => {
+	const renderField = (field: Field) => {
 		const { name } = field;
 
-		const handleFieldChange = (name: string, value: FieldTypeToValue[T]) => {
-			setFormData((prev) => ({ ...prev, [name]: value }));
+		const handleFieldChange = (name: string, value: FieldTypeToValue[FieldType]) => {
+			setFormData((prev) => ({
+				...prev,
+				fields: prev.fields.map((field) => (field.name === name ? { ...field, value } : field)),
+			}));
 		};
 
-		return (
-			<FieldComponent
-				{...field}
-				// TODO: Try to remove casting
-				value={formData[name] as FieldTypeToValue[T]}
-				onChange={handleFieldChange}
-				key={name}
-			/>
-		);
+		return <FieldComponent {...field} onChange={handleFieldChange} key={name} />;
 	};
 
-	return <form onSubmit={onSubmit}>{JSON.parse(config).map(renderField)}</form>;
+	const fields = formData.fields.map(renderField);
+	const buttons = formData.buttons.map((button) => <button>{button.text}</button>);
+
+	return (
+		<form onSubmit={onSubmit}>
+			<div>{fields}</div>
+			<div>{buttons}</div>
+		</form>
+	);
 };
 
 export default Result;
