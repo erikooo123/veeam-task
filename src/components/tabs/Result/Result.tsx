@@ -4,6 +4,8 @@ import { TabProps } from '../../Container/services/types';
 import FieldComponent from '../../Field/Field';
 import { getInitialFormData } from './services/helpers';
 import { type FormData } from './services/types';
+import { ButtonsWrapper } from './Result.styled';
+import { Button, Form } from '../../Form';
 
 const Result: FunctionComponent<TabProps> = ({ config }) => {
 	const [formData, setFormData] = useState<FormData>(getInitialFormData(JSON.parse(config)));
@@ -29,13 +31,17 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 	};
 
 	const fields = formData.fields.map(renderField);
-	const buttons = formData.buttons.map((button) => <button>{button.text}</button>);
+	const buttons = formData.buttons.map(({ text }) => (
+		<Button key={text} type="button">
+			{text}
+		</Button>
+	));
 
 	return (
-		<form onSubmit={onSubmit}>
+		<Form onSubmit={onSubmit}>
 			<div>{fields}</div>
-			<div>{buttons}</div>
-		</form>
+			<ButtonsWrapper>{buttons}</ButtonsWrapper>
+		</Form>
 	);
 };
 
