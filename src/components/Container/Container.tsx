@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 
 const Container: FunctionComponent = () => {
 	const [config, setConfig] = useState(JSON.stringify(configuration, null, 2));
-	const [selectedTab, setSelectedTab] = useState<TabId>(TabId.Config);
+	const [selectedTab, setSelectedTab] = useState<TabId>(TABS[0].id);
 	const Tab = TAB_MAP[selectedTab];
 
 	const onConfigSave: TabProps['onConfigSave'] = (value) => setConfig(value);
