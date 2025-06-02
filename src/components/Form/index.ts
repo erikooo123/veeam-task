@@ -6,6 +6,7 @@ export const Form = styled.form`
 	flex-direction: column;
 	height: 100%;
 	justify-content: space-between;
+	gap: 24px;
 `;
 
 export const Button = styled.button`
@@ -14,7 +15,15 @@ export const Button = styled.button`
 	cursor: pointer;
 	font-size: 16px;
 	outline: none;
-	padding: 8px;
+	padding: 8px 16px;
+	display: inline;
+	align-self: flex-end;
+	border-radius: 8px;
+	transition: all 0.2s;
+
+	&:hover {
+		background-color: aliceblue;
+	}
 `;
 
 export const Input = styled.input`

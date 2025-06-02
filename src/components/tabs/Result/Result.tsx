@@ -21,7 +21,9 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 		const handleFieldChange = (name: string, value: FieldTypeToValue[FieldType]) => {
 			setFormData((prev) => ({
 				...prev,
-				fields: prev.fields.map((field) => (field.name === name ? { ...field, value } : field)),
+				fields: prev.fields.map((fieldCandidate) =>
+					fieldCandidate.name === name ? { ...fieldCandidate, value } : field,
+				),
 			}));
 		};
 
@@ -29,6 +31,7 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 	};
 
 	const fields = useMemo(() => formData.fields.map(renderField), [formData]);
+
 	const buttons = useMemo(
 		() =>
 			formData.buttons.map(({ text }) => (

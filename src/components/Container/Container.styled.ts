@@ -8,6 +8,10 @@ export const TabWrapper = styled.div`
 
 export const TabButtons = styled.div`
 	display: flex;
+
+	& > *:not(:last-child) {
+		border-right: none;
+	}
 `;
 
 export const Wrapper = styled.div`

@@ -26,8 +26,7 @@ type FormButton = {
 
 export type Field = RawField & { value: FieldTypeToValue[FieldType] };
 
-export type FormData = {
-	buttons: FormButton[];
+export type FormData = Pick<Config, 'buttons'> & {
 	fields: Field[];
 };
 
