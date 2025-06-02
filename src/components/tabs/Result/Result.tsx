@@ -22,7 +22,7 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 			setFormData((prev) => ({
 				...prev,
 				fields: prev.fields.map((fieldCandidate) =>
-					fieldCandidate.name === name ? { ...fieldCandidate, value } : field,
+					fieldCandidate.name === name ? { ...fieldCandidate, value } : fieldCandidate,
 				),
 			}));
 		};
