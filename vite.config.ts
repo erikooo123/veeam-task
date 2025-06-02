@@ -6,7 +6,7 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: ['./src/setupTests.tsx'],
+		setupFiles: ['./src/utilities/testing/setupTests.tsx'],
 		coverage: {
 			reporter: ['text', 'json', 'html'],
 			exclude: ['node_modules/', '**/*.test.ts', '**/*.test.tsx'],

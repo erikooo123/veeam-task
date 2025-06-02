@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-This project is a React application built with TypeScript and Vite, featuring a form configuration system.
+This project is a React application built with TypeScript and Vite, featuring a simple JSON to form system.
 
 ## 🚀 Quick Start
 
