@@ -45,7 +45,6 @@ const Config: FunctionComponent<TabProps> = ({ config, onConfigSave }) => {
 					enableLiveAutocompletion: true,
 					enableSnippets: true,
 					showLineNumbers: true,
-					spellcheck: true,
 					tabSize: 4,
 					useWorker: true,
 				}}

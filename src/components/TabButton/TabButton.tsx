@@ -9,7 +9,7 @@ type TabButtonProps = Tab & {
 };
 
 const TabButton: FunctionComponent<TabButtonProps> = ({ onTabClick, label, isSelected }) => (
-	<Button type="button" onClick={onTabClick} role="tab" $isSelected={isSelected}>
+	<Button type="button" onClick={onTabClick} role="tab" $isSelected={isSelected} aria-selected={isSelected}>
 		{label}
 	</Button>
 );
