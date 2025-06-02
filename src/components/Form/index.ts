@@ -1,35 +1,32 @@
 import styled from 'styled-components';
+import { focusStyles } from '../../utilities/style';
 
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	height: 100%;
+	justify-content: space-between;
 `;
 
 export const Button = styled.button`
 	background: transparent;
-	outline: none;
 	border: 1px solid #000;
-	padding: 8px;
-	font-size: 16px;
 	cursor: pointer;
+	font-size: 16px;
+	outline: none;
+	padding: 8px;
 `;
 
 export const Input = styled.input`
-	width: 50%;
-	padding: 8px 12px;
-	margin: 8px 0;
-	border: 1px solid #ddd;
 	border-radius: 4px;
+	border: 1px solid #ddd;
 	font-size: 14px;
+	margin: 8px 0;
+	padding: 8px 12px;
 	transition: border-color 0.3s ease;
+	width: 50%;
 
-	&:focus {
-		outline: none;
-		border-color: #0066cc;
-		box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-	}
+	${focusStyles}
 
 	&:hover {
 		border-color: #999;
@@ -43,22 +40,19 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-	width: 100%;
-	padding: 8px 12px;
-	margin: 8px 0;
-	border: 1px solid #ddd;
 	border-radius: 4px;
-	font-size: 14px;
-	min-height: 100px;
-	resize: vertical;
+	border: 1px solid #ddd;
 	font-family: inherit;
+	font-size: 14px;
+	margin: 8px 0 0 16px;
+	min-height: 100px;
+	padding: 8px 12px;
+	resize: vertical;
 	transition: border-color 0.3s ease;
+	width: 100%;
+	resize: none;
 
-	&:focus {
-		outline: none;
-		border-color: #0066cc;
-		box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-	}
+	${focusStyles}
 
 	&:hover {
 		border-color: #999;
@@ -66,9 +60,9 @@ export const TextArea = styled.textarea`
 `;
 
 export const Label = styled.label`
+	color: #333;
 	display: block;
-	margin-bottom: 4px;
 	font-size: 14px;
 	font-weight: 500;
-	color: #333;
+	margin-bottom: 4px;
 `;

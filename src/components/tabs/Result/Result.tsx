@@ -1,4 +1,4 @@
-import { FormEventHandler, useState, type FunctionComponent } from 'react';
+import { FormEventHandler, useMemo, useState, type FunctionComponent } from 'react';
 import { Field, FieldType, FieldTypeToValue } from './services/types';
 import { TabProps } from '../../Container/services/types';
 import FieldComponent from '../../Field/Field';
@@ -9,8 +9,6 @@ import { Button, Form } from '../../Form';
 
 const Result: FunctionComponent<TabProps> = ({ config }) => {
 	const [formData, setFormData] = useState<FormData>(getInitialFormData(JSON.parse(config)));
-
-	if (!config) return <p>No form configuration loaded.</p>;
 
 	const onSubmit: FormEventHandler = (e) => {
 		e.preventDefault();
@@ -30,12 +28,18 @@ const Result: FunctionComponent<TabProps> = ({ config }) => {
 		return <FieldComponent {...field} onChange={handleFieldChange} key={name} />;
 	};
 
-	const fields = formData.fields.map(renderField);
-	const buttons = formData.buttons.map(({ text }) => (
-		<Button key={text} type="button">
-			{text}
-		</Button>
-	));
+	const fields = useMemo(() => formData.fields.map(renderField), [formData]);
+	const buttons = useMemo(
+		() =>
+			formData.buttons.map(({ text }) => (
+				<Button key={text} type="button" onClick={() => alert(text)}>
+					{text}
+				</Button>
+			)),
+		[formData],
+	);
+
+	if (!config) return <p>No form configuration loaded.</p>;
 
 	return (
 		<Form onSubmit={onSubmit}>

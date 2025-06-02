@@ -8,6 +8,8 @@ import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/worker-json';
 import { Button } from '../../Form';
+import { toast } from 'react-toastify';
+import { Wrapper } from './Config.styled';
 
 ace.config.set('basePath', '/node_modules/ace-builds/src-noconflict/');
 
@@ -16,13 +18,22 @@ const Config: FunctionComponent<TabProps> = ({ config, onConfigSave }) => {
 
 	const handleSave = () => {
 		if (!ref.current) return;
+
 		const editor = ref.current.editor;
 		const value = editor.getValue();
-		onConfigSave(value);
+
+		try {
+			const parsedValue = JSON.parse(value);
+			onConfigSave(JSON.stringify(parsedValue, null, 2));
+			toast.success('Configuration saved successfully!');
+		} catch (e) {
+			toast.error('Something went wrong. Please check your JSON syntax.');
+			console.error(e);
+		}
 	};
 
 	return (
-		<div>
+		<Wrapper>
 			<AceEditor
 				ref={ref}
 				fontSize={14}
@@ -46,7 +57,7 @@ const Config: FunctionComponent<TabProps> = ({ config, onConfigSave }) => {
 			<Button type="button" onClick={handleSave}>
 				Save
 			</Button>
-		</div>
+		</Wrapper>
 	);
 };
 

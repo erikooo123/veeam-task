@@ -12,7 +12,7 @@ export const TabButtons = styled.div`
 
 export const Wrapper = styled.div`
 	width: 600px;
-	height: 600px;
+	min-height: 600px;
 	display: flex;
 	flex-direction: column;
 `;
