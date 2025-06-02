@@ -30,7 +30,7 @@ const Container: FunctionComponent = () => {
 			<TabWrapper role="tabpanel">
 				<Tab config={config} onConfigSave={onConfigSave} />
 			</TabWrapper>
-			<ToastContainer />
+			<ToastContainer position="top-center" />
 		</Wrapper>
 	);
 };

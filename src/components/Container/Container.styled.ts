@@ -19,4 +19,5 @@ export const Wrapper = styled.div`
 	min-height: 600px;
 	display: flex;
 	flex-direction: column;
+	margin: 100px auto 0;
 `;
