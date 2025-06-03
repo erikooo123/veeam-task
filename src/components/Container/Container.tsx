@@ -1,18 +1,15 @@
-import { useState, type FunctionComponent } from 'react';
-import { TAB_MAP, TABS } from './services/constants';
-import { TabId, TabProps } from './services/types';
+import { type FunctionComponent } from 'react';
+import { TABS } from './services/constants';
 import TabButton from '../TabButton/TabButton';
 import { TabButtons, TabWrapper, Wrapper } from './Container.styled';
 
-import configuration from '../../data/exampleForm.json';
 import { ToastContainer } from 'react-toastify';
+import useTabs from './services/useTabs';
+import useConfig from './services/useConfig';
 
 const Container: FunctionComponent = () => {
-	const [config, setConfig] = useState(JSON.stringify(configuration, null, 2));
-	const [selectedTab, setSelectedTab] = useState<TabId>(TABS[0].id);
-	const Tab = TAB_MAP[selectedTab];
-
-	const onConfigSave: TabProps['onConfigSave'] = (value) => setConfig(value);
+	const { Tab, selectedTab, onTabClick } = useTabs();
+	const { config, onConfigSave } = useConfig();
 
 	return (
 		<Wrapper>
@@ -20,7 +17,7 @@ const Container: FunctionComponent = () => {
 				{TABS.map((tab) => (
 					<TabButton
 						{...tab}
-						onTabClick={() => setSelectedTab(tab.id)}
+						onTabClick={() => onTabClick(tab.id)}
 						isSelected={selectedTab === tab.id}
 						key={tab.id}
 					/>
