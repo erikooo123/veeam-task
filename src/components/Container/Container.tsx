@@ -9,7 +9,7 @@ import useConfig from './services/useConfig';
 
 const Container: FunctionComponent = () => {
 	const { Tab, selectedTab, onTabClick } = useTabs();
-	const { config, onConfigSave } = useConfig();
+	const config = useConfig();
 
 	return (
 		<Wrapper>
@@ -25,7 +25,7 @@ const Container: FunctionComponent = () => {
 			</TabButtons>
 
 			<TabWrapper role="tabpanel">
-				<Tab config={config} onConfigSave={onConfigSave} />
+				<Tab {...config} />
 			</TabWrapper>
 			<ToastContainer position="top-center" />
 		</Wrapper>
